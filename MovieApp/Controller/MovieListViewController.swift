@@ -14,7 +14,6 @@ enum MovieType:String,CaseIterable {
     case UpComing = "Up Coming"
 }
 
-
 class MovieListViewController: UITableViewController {
     private let vm = MovieListViewModel()
     private var cancellable: AnyCancellable?
@@ -22,7 +21,7 @@ class MovieListViewController: UITableViewController {
     static var nowPlayingCurrentPage = 0
     static var popularCurrentPage = 0
     static var upcomingCurrentPage = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Movie List"
@@ -35,7 +34,7 @@ class MovieListViewController: UITableViewController {
     private func reloadTableForNewMovies() {
         cancellable = vm.$moviesList.sink { [weak self] movies in
             self?.tableDataArray = movies
-
+            
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
@@ -44,7 +43,7 @@ class MovieListViewController: UITableViewController {
     }
     
     @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
-        vm.loadAllMovies()
+        vm.refreshAllMovieListing()
     }
 }
 
@@ -147,7 +146,6 @@ extension MovieListViewController {
             MovieListViewController.upcomingCurrentPage = nextPage
         }
     }*/
-    
     
 }
 

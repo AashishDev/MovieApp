@@ -9,65 +9,33 @@ import Foundation
 import Combine
 
 class MovieListViewModel: ObservableObject {
-    let service:MovieServiceProtocol
+    let nowPlayingService:MovieServiceProtocol
+    let popularService:MovieServiceProtocol
+    let upcomingService:MovieServiceProtocol
+    
     @Published private(set) var moviesList:[[Movie]] = []
     
-    init(service:MovieServiceProtocol =  MovieService()) {
-        self.service =  service
-        loadAllMovies()
-    }
+    init(nowPlaying:MovieServiceProtocol =  NowPlayingMovieService(),
+         popular:MovieServiceProtocol =  PopularMovieService(),
+         upComing:MovieServiceProtocol =  UpComingMovieService())
+        {
+        self.nowPlayingService =  nowPlaying
+        self.popularService =  popular
+        self.upcomingService =  upComing
+        }
     
-    public func loadAllMovies() {
-        self.moviesList.removeAll()
-        Task.init {
-            let movies = await loadMovies()
+   public func refreshAllMovieListing() {
+        Task {
+            let movies = await loadAllMovies()
             DispatchQueue.main.async {
                 self.moviesList = movies
             }
         }
     }
-    
-    func loadMovies() async  -> [[Movie]]  {
-        //return [await nowPlaying()]
-        async let nowPlayingMovies = nowPlaying()
-        async let popularMovies =   popular()
-        async let upcomingMovies =  upcoming()
-        return await [nowPlayingMovies,popularMovies,upcomingMovies]
-    }
-    
-    func nowPlaying(pageNo:Int = 1) async -> [Movie] {
-        do {
-            let response = try await self.service.loadMovies(endpoint: .NowPlaying(pageNo: pageNo))
-            return response.movies
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-        return []
-    }
-    
-    func popular(pageNo:Int = 1) async -> [Movie]  {
-        do {
-            let response = try await self.service.loadMovies(endpoint: .Popular(pageNo: pageNo))
-            return response.movies
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-        return []
-    }
-    
-    func upcoming(pageNo:Int = 1) async -> [Movie]  {
-        do {
-            let response = try await self.service.loadMovies(endpoint: .UpComing(pageNo: pageNo))
-            return response.movies
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-        return []
-    }
-    
+}
+
+//Public Methods ----------------------------------------
+extension MovieListViewModel {
     
     func loadMoreForNowPlayingList(pageNo:Int) {
         Task {
@@ -92,5 +60,38 @@ class MovieListViewModel: ObservableObject {
             print("UpComing loadMore")
         }
     }
+}
+
+
+extension MovieListViewModel {
     
+    func loadAllMovies() async  -> [[Movie]]  {
+        async let nowPlayingMovies = nowPlaying()
+        async let popularMovies =  popular()
+        async let upComingMovies =  upcoming()
+        return await [nowPlayingMovies,popularMovies,upComingMovies]
+    }
+    
+    private func nowPlaying(pageNo:Int = 1) async -> [Movie] {
+        await getMovies(service: nowPlayingService, pageNo: pageNo)
+    }
+    
+    private func popular(pageNo:Int = 1) async -> [Movie]  {
+        await getMovies(service: popularService, pageNo: pageNo)
+    }
+    
+    private func upcoming(pageNo:Int = 1) async -> [Movie]  {
+        await getMovies(service: upcomingService, pageNo: pageNo)
+    }
+    
+    private func getMovies(service:MovieServiceProtocol,pageNo:Int) async -> [Movie]{
+        do {
+            let response = try await self.upcomingService.loadMovies(pageNo: pageNo)
+            return response.movies
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        return []
+    }
 }

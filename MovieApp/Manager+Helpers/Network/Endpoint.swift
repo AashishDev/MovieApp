@@ -21,6 +21,17 @@ enum EndPoint {
     case Popular(pageNo:Int)
     case UpComing(pageNo:Int)
     
+    var rawValue:Int {
+        switch self {
+        case .NowPlaying(_):
+            return 0
+        case .Popular(_):
+            return 1
+        case .UpComing(_):
+            return 2
+        }
+    }
+    
     var requestType:String {
         switch self {
         case .NowPlaying, .Popular, .UpComing :
@@ -28,10 +39,7 @@ enum EndPoint {
         }
     }
     
-    // let movieList = "https://api.themoviedb.org/3/movie/now_playing?api_key=c&language=en-US&page=1"
-    
     var path:String {
-        
         switch self {
         case .NowPlaying(let pageNo):
             return BasePath + "now_playing?api_key=\(APIKey)&\(language)&page=\(pageNo)"

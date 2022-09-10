@@ -29,30 +29,52 @@ struct MovieResponse:Codable {
 }
 
 protocol MovieServiceProtocol {
-    //func loadMovies(endpoint:EndPoint,completion:@escaping (Result<MovieResponse,Error>) -> Void)
-    func loadMovies(endpoint:EndPoint) async throws -> MovieResponse
+    func loadMovies(pageNo:Int) async throws -> MovieResponse
 }
 
-struct MovieService:MovieServiceProtocol {
+struct NowPlayingMovieService:MovieServiceProtocol {
     private let apiManager:APIServiceProtocol
     init(apiManager:APIServiceProtocol = APIManager()) {
         self.apiManager = apiManager
     }
     
-    func loadMovies(endpoint:EndPoint) async throws -> MovieResponse {
+    func loadMovies(pageNo:Int) async throws -> MovieResponse {
         return try await withCheckedThrowingContinuation { continuation in
-            self.apiManager.execute(responseType: MovieResponse.self, endpoint: endpoint) { result in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .NowPlaying(pageNo: pageNo)) { result in
                 continuation.resume(with: result)
             }
         }
     }
-    
-    /* Older version
-     func loadMovies(endpoint:EndPoint,completion:@escaping (Result<MovieResponse,Error>) -> Void) {
-     self.apiManager.execute(responseType: MovieResponse.self, endpoint: endpoint) { result in
-     completion(result)
-     }
-     }
-     
-     */
 }
+
+struct PopularMovieService:MovieServiceProtocol {
+    private let apiManager:APIServiceProtocol
+    init(apiManager:APIServiceProtocol = APIManager()) {
+        self.apiManager = apiManager
+    }
+    
+    func loadMovies(pageNo:Int) async throws -> MovieResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .Popular(pageNo: pageNo)) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+}
+
+struct UpComingMovieService:MovieServiceProtocol {
+    private let apiManager:APIServiceProtocol
+    init(apiManager:APIServiceProtocol = APIManager()) {
+        self.apiManager = apiManager
+    }
+    
+    func loadMovies(pageNo:Int) async throws -> MovieResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .UpComing(pageNo: pageNo)) { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
+}
+
+
