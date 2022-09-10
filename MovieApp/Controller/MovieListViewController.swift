@@ -15,8 +15,7 @@ enum MovieType:String,CaseIterable {
 }
 
 
-class MovieListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+class MovieListViewController: UITableViewController {
     private let vm = MovieListViewModel()
     private var cancellable: AnyCancellable?
     private var tableDataArray:[[Movie]] = []
@@ -34,25 +33,30 @@ class MovieListViewController: UIViewController {
         cancellable = vm.$moviesList.sink { [weak self] movies in
             self?.tableDataArray = movies
             self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
         }
+    }
+    
+    @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
+        vm.loadAllMovies()
     }
 }
 
-extension MovieListViewController:UITableViewDataSource,UITableViewDelegate {
+extension MovieListViewController {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         tableDataArray.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return MovieType.allCases[section].rawValue
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel!.font = UIFont.boldSystemFont(ofSize: 19)
@@ -61,14 +65,15 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         0.0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =  tableView.dequeueReusableCell(withIdentifier:MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else {
             return UITableViewCell()
         }
@@ -79,11 +84,11 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
             return 270
