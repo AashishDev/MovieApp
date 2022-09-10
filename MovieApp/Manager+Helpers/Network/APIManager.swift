@@ -11,12 +11,9 @@ enum APIError:Error {
 case InValidURL
 }
 
-
-
 protocol APIServiceProtocol {
     func execute<T:Codable>(responseType: T.Type, endpoint: EndPoint, completion: @escaping ((Result<T, Error>) -> Void))
 }
-
 
 class APIManager:APIServiceProtocol {
     private let remoteService:RemoteServiceProtocol
@@ -26,7 +23,6 @@ class APIManager:APIServiceProtocol {
         self.remoteService = remoteService
         self.parser = parser
     }
-    
     
     func execute<T>(responseType: T.Type, endpoint: EndPoint, completion: @escaping ((Result<T, Error>) -> Void)) where T : Decodable, T : Encodable {
         
@@ -57,8 +53,5 @@ class APIManager:APIServiceProtocol {
                 completion(.failure(error))
             }
         }
-        
-        
     }
-    
 }
