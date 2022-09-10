@@ -19,6 +19,9 @@ class MovieListViewController: UITableViewController {
     private let vm = MovieListViewModel()
     private var cancellable: AnyCancellable?
     private var tableDataArray:[[Movie]] = []
+    static var nowPlayingCurrentPage = 0
+    static var popularCurrentPage = 0
+    static var upcomingCurrentPage = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +35,11 @@ class MovieListViewController: UITableViewController {
     private func reloadTableForNewMovies() {
         cancellable = vm.$moviesList.sink { [weak self] movies in
             self?.tableDataArray = movies
-            self?.tableView.reloadData()
-            self?.refreshControl?.endRefreshing()
+
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.refreshControl?.endRefreshing()
+            }
         }
     }
     
@@ -80,6 +86,31 @@ extension MovieListViewController {
         
         let selMovies =  tableDataArray[indexPath.section]
         cell.configure(with: selMovies,indexPath: indexPath)
+        let type = MovieType.allCases[indexPath.section]
+        cell.loadMore =  {
+            
+            switch type {
+            case .NowPlaying:
+                let nextPage =  MovieListViewController.nowPlayingCurrentPage + 1
+                self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
+                MovieListViewController.nowPlayingCurrentPage = nextPage
+                //print("\nNow Playing : \(self.tableDataArray[0].count)")
+
+                
+            case .Popular:
+                let nextPage =  MovieListViewController.popularCurrentPage + 1
+                self.vm.loadMoreForPopularList(pageNo: nextPage)
+                MovieListViewController.popularCurrentPage = nextPage
+                //print("\nPOpUlar : \(self.tableDataArray[1].count)")
+                
+            case .UpComing:
+                let nextPage =  MovieListViewController.upcomingCurrentPage + 1
+                self.vm.loadMoreForUpcomingList(pageNo: nextPage)
+                MovieListViewController.upcomingCurrentPage = nextPage
+                //print("\nUPComing : \(self.tableDataArray[2].count)")
+
+            }
+        }
         cell.backgroundColor = .white
         return cell
     }
@@ -98,6 +129,26 @@ extension MovieListViewController {
         }
         return 250
     }
+    
+    /*func loadMoreMovies(type:MovieType, currentPage:Int) {
+        let nextPage =  currentPage + 1
+        
+        switch type {
+        case .NowPlaying:
+            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
+            MovieListViewController.nowPlayingCurrentPage = nextPage
+            
+        case .Popular:
+            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
+            MovieListViewController.popularCurrentPage = nextPage
+
+        case .UpComing:
+            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
+            MovieListViewController.upcomingCurrentPage = nextPage
+        }
+    }*/
+    
+    
 }
 
 

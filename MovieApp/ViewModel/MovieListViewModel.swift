@@ -28,6 +28,7 @@ class MovieListViewModel: ObservableObject {
     }
     
     func loadMovies() async  -> [[Movie]]  {
+        //return [await nowPlaying()]
         async let nowPlayingMovies = nowPlaying()
         async let popularMovies =   popular()
         async let upcomingMovies =  upcoming()
@@ -66,4 +67,30 @@ class MovieListViewModel: ObservableObject {
         }
         return []
     }
+    
+    
+    func loadMoreForNowPlayingList(pageNo:Int) {
+        Task {
+            let result = await nowPlaying(pageNo: pageNo)
+            moviesList[0].append(contentsOf: result)
+            print("NowPlaying loadMore")
+        }
+    }
+    
+    func loadMoreForPopularList(pageNo:Int) {
+        Task {
+            let result =  await popular(pageNo: pageNo)
+            moviesList[1].append(contentsOf: result)
+            print("PopPular loadMore")
+        }
+    }
+    
+    func loadMoreForUpcomingList(pageNo:Int) {
+        Task {
+            let result =   await upcoming(pageNo: pageNo)
+            moviesList[2].append(contentsOf: result)
+            print("UpComing loadMore")
+        }
+    }
+    
 }

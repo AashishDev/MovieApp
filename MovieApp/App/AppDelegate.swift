@@ -32,3 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+
+/* -- Git Configuration in Xcode tools
+ Generate private token firstly
+ git error Solution
+ sudo chown -R "$USER" ~/.config
+ */

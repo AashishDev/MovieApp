@@ -8,10 +8,13 @@
 import UIKit
 import Kingfisher
 
+
 class MovieListTableViewCell: UITableViewCell {
     static let identifier = "MovieListTableViewCell"
     @IBOutlet weak var collectionView: UICollectionView!
     private var movies:[Movie] = []
+    var loadMore:(() -> Void)?
+    var isLoading = false
     
     var isPopular:Bool = false
 
@@ -31,12 +34,10 @@ class MovieListTableViewCell: UITableViewCell {
     
     func configure(with vm:[Movie], indexPath:IndexPath) {
         self.movies = vm
-        isPopular = ( indexPath.section == 0)
+        isPopular = (indexPath.section == 0)
         self.collectionView.reloadData()
     }
-
 }
-
 
 extension MovieListTableViewCell:UICollectionViewDataSource,
                                  UICollectionViewDelegate,
@@ -48,7 +49,6 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         
         let movie = self.movies[indexPath.row]
         let title = movie.title
-        print("TitleL \(title)")
         cell.title.text = title
         
         cell.imageView.layer.cornerRadius = 8.0
@@ -70,6 +70,15 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         }
         else {
             return CGSize(width:300, height: collectionView.frame.size.height)
+        }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row > movies.count-2, !isLoading {
+            print("\n------Load More --------")
+            loadMore?()
         }
     }
 }
