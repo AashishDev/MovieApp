@@ -29,7 +29,8 @@ struct MovieResponse:Codable {
 }
 
 protocol MovieServiceProtocol {
-    func loadMovies(path:String,completion:@escaping (Result<MovieResponse,Error>) -> Void)
+    //func loadMovies(endpoint:EndPoint,completion:@escaping (Result<MovieResponse,Error>) -> Void)
+    func loadMovies(endpoint:EndPoint) async throws -> MovieResponse
 }
 
 struct MovieService:MovieServiceProtocol {
@@ -38,13 +39,20 @@ struct MovieService:MovieServiceProtocol {
         self.apiManager = apiManager
     }
     
-    func loadMovies(path:String,completion:@escaping (Result<MovieResponse,Error>) -> Void) {
-        
-        let url = URL(string: path)
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "GET"
-        self.apiManager.execute(responseType: MovieResponse.self, urlRequest: urlRequest) { result in
-            completion(result)
+    func loadMovies(endpoint:EndPoint) async throws -> MovieResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: endpoint) { result in
+                continuation.resume(with: result)
+            }
         }
     }
+    
+    /* Older version
+     func loadMovies(endpoint:EndPoint,completion:@escaping (Result<MovieResponse,Error>) -> Void) {
+     self.apiManager.execute(responseType: MovieResponse.self, endpoint: endpoint) { result in
+     completion(result)
+     }
+     }
+     
+     */
 }

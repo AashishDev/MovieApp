@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Combine
 
 enum MovieType:String,CaseIterable {
     case NowPlaying = "Now Playing"
@@ -17,27 +17,31 @@ enum MovieType:String,CaseIterable {
 
 class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    let vm = MovieListViewModel()
-    
+    private let vm = MovieListViewModel()
+    private var cancellable: AnyCancellable?
+    private var tableDataArray:[[Movie]] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Movie List"
         tableView.register(UITableViewCell.self
                            , forCellReuseIdentifier: "Cell")
         tableView.backgroundColor = .black
-        vm.dataChanged = { [weak self] in
+        reloadTableForNewMovies()
+    }
+    
+    private func reloadTableForNewMovies() {
+        cancellable = vm.$moviesList.sink { [weak self] movies in
+            self?.tableDataArray = movies
             self?.tableView.reloadData()
         }
-        
     }
 }
-
 
 extension MovieListViewController:UITableViewDataSource,UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        MovieType.allCases.count
+        tableDataArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,10 +73,8 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate {
             return UITableViewCell()
         }
         
-        if vm.moviesList.count > 2 {
-            cell.configure(with: vm.moviesList[indexPath.section],indexPath: indexPath)
-        }
-     
+        let selMovies =  tableDataArray[indexPath.section]
+        cell.configure(with: selMovies,indexPath: indexPath)
         cell.backgroundColor = .white
         return cell
     }

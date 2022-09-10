@@ -25,6 +25,7 @@
 		AE43CBD628C9FA750037178D /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43CBD528C9FA750037178D /* MovieDetailViewController.swift */; };
 		AE43CBD828C9FAA30037178D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43CBD728C9FAA30037178D /* SearchViewController.swift */; };
 		AE43CBDA28C9FAE50037178D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43CBD928C9FAE50037178D /* TabBarController.swift */; };
+		AEF5C55728CC14C300D00985 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5C55628CC14C300D00985 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		AE43CBD528C9FA750037178D /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		AE43CBD728C9FAA30037178D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AE43CBD928C9FAE50037178D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		AEF5C55628CC14C300D00985 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BBA14C34966E08A69BD0641A /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 				AE3B57A228CAF2790032BF0A /* APIManager.swift */,
 				AE3B57A028CAF2790032BF0A /* RemoteService.swift */,
 				AE3B57A128CAF2790032BF0A /* ResponseParser.swift */,
+				AEF5C55628CC14C300D00985 /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				AE43CBD628C9FA750037178D /* MovieDetailViewController.swift in Sources */,
 				AE43CBBC28C9FA200037178D /* AppDelegate.swift in Sources */,
 				AE3B57A528CAF2790032BF0A /* APIManager.swift in Sources */,
+				AEF5C55728CC14C300D00985 /* Endpoint.swift in Sources */,
 				AE3B57A928CAF2B80032BF0A /* MovieService.swift in Sources */,
 				AE3B57AF28CAFDBC0032BF0A /* MovieListViewModel.swift in Sources */,
 				AE3B57A428CAF2790032BF0A /* ResponseParser.swift in Sources */,
