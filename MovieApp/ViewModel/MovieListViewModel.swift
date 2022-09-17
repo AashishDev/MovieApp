@@ -18,13 +18,13 @@ class MovieListViewModel: ObservableObject {
     init(nowPlaying:MovieServiceProtocol =  NowPlayingMovieService(),
          popular:MovieServiceProtocol =  PopularMovieService(),
          upComing:MovieServiceProtocol =  UpComingMovieService())
-        {
+    {
         self.nowPlayingService =  nowPlaying
         self.popularService =  popular
         self.upcomingService =  upComing
-        }
+    }
     
-   public func refreshAllMovieListing() {
+    public func refreshAllMovieListing() {
         Task {
             let movies = await loadAllMovies()
             DispatchQueue.main.async {

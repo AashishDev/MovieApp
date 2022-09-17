@@ -11,5 +11,4 @@ class NowPlayingCollectionViewCell: UICollectionViewCell {
     static let identifier = "NowPlayingCollectionViewCell"
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var title: UILabel!
-
 }

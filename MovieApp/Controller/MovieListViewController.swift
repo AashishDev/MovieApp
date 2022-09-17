@@ -146,7 +146,7 @@ extension MovieListViewController {
             MovieListViewController.upcomingCurrentPage = nextPage
         }
     }*/
-    
 }
+
 
 
