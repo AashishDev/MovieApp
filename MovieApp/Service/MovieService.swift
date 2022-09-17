@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 struct Movie:Codable {
     let id:Int

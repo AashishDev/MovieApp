@@ -8,23 +8,23 @@
 import Foundation
 
 enum APIError:Error {
-case InValidURL
+  case InValidURL
 }
 
-protocol APIServiceProtocol {
+public protocol APIServiceProtocol {
     func execute<T:Codable>(responseType: T.Type, endpoint: EndPoint, completion: @escaping ((Result<T, Error>) -> Void))
 }
 
-class APIManager:APIServiceProtocol {
+public class APIManager:APIServiceProtocol {
     private let remoteService:RemoteServiceProtocol
     private let parser:ResponseParserProtocol
     
-    init(remoteService: RemoteServiceProtocol = RemoteService(), parser: ResponseParserProtocol = ResponseParser()) {
+    public init(remoteService: RemoteServiceProtocol = RemoteService(), parser: ResponseParserProtocol = ResponseParser()) {
         self.remoteService = remoteService
         self.parser = parser
     }
     
-    func execute<T>(responseType: T.Type, endpoint: EndPoint, completion: @escaping ((Result<T, Error>) -> Void)) where T : Decodable, T : Encodable {
+   public  func execute<T>(responseType: T.Type, endpoint: EndPoint, completion: @escaping ((Result<T, Error>) -> Void)) where T : Decodable, T : Encodable {
         
         guard let url = URL(string: endpoint.path) else {
             completion(.failure(APIError.InValidURL))

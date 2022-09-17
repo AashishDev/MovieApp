@@ -16,7 +16,7 @@ let BasePath = "https://api.themoviedb.org/3/movie/"
 let APIKey = "11c5d3b2a72c53e38a4b740b08d28921"
 let language = "language=en-US"
 
-enum EndPoint {
+public enum EndPoint {
     case NowPlaying(pageNo:Int)
     case Popular(pageNo:Int)
     case UpComing(pageNo:Int)

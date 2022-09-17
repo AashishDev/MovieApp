@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol RemoteServiceProtocol {
+public protocol RemoteServiceProtocol {
     func execute(request:URLRequest,completion: @escaping ((Result<Data,Error>) -> Void))
 }
 
-struct RemoteService:RemoteServiceProtocol {
+public struct RemoteService:RemoteServiceProtocol {
     private let session:URLSession
-    init(session:URLSession = URLSession.shared) {
+   public init(session:URLSession = URLSession.shared) {
         self.session = session
     }
     
-    func execute(request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) {
+    public func execute(request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) {
         
         self.session.dataTask(with: request) { data, _, error in
            

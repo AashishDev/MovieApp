@@ -29,6 +29,7 @@ class MovieListViewController: UITableViewController {
                            , forCellReuseIdentifier: "Cell")
         tableView.backgroundColor = .black
         reloadTableForNewMovies()
+        vm.refreshAllMovieListing()
     }
     
     private func reloadTableForNewMovies() {
