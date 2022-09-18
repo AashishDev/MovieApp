@@ -15,6 +15,7 @@ class MovieListTableViewCell: UITableViewCell {
     private var movies:[Movie] = []
     var loadMore:(() -> Void)?
     var isLoading = false
+    var selectedItem:((Movie)-> Void)?
     
     var isPopular:Bool = false
 
@@ -81,4 +82,12 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
             loadMore?()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let movie = self.movies[indexPath.row]
+        self.selectedItem?(movie)
+        print("Selected Index : \(movie.title)")
+    }
+    
 }

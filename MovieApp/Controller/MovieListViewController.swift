@@ -111,8 +111,18 @@ extension MovieListViewController {
 
             }
         }
+        cell.selectedItem = moveToDetail
         cell.backgroundColor = .white
         return cell
+    }
+    
+    private func moveToDetail(movie:Movie){
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        vc.movie = movie
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

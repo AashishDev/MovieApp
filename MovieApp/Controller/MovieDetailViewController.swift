@@ -6,10 +6,29 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieDetailViewController: UIViewController {
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    private let vm = MovieDetailViewModel()
+    var movie:Movie?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Movie Detail"
+        self.title = movie!.title
+        self.navigationItem.largeTitleDisplayMode = .never
+        fetchMovieDetails()
     }
+    
+    fileprivate func fetchMovieDetails() {
+        vm.completion = { movieDetail in
+            DispatchQueue.main.async { [weak self] in
+                self?.movieImageView.kf.setImage(with: movieDetail.postImageUrl)
+                self?.titleLabel.text = movieDetail.overview
+            }
+        }
+        vm.getSelectedMovieDetails(movieId: movie!.id)
+    }
+    
 }

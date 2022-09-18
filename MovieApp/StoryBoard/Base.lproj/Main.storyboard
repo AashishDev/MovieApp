@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6W2-MA-IKe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -113,17 +114,43 @@
             </objects>
             <point key="canvasLocation" x="-201.44927536231884" y="50.892857142857139"/>
         </scene>
-        <!--Item-->
+        <!--Movie Detail-->
         <scene sceneID="gga-q8-7bg">
             <objects>
-                <viewController storyboardIdentifier="MovieDetailViewController" id="4oM-Ka-hEI" customClass="MovieDetailViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" title="Movie Detail" id="4oM-Ka-hEI" customClass="MovieDetailViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h5P-mU-UIg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nQQ-Ti-HTc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nQQ-Ti-HTc" secondAttribute="height" id="R91-p2-bub"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVz-DM-YME">
+                                <rect key="frame" x="5" y="468" width="404" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Tfe-Zl-yVn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XVz-DM-YME" firstAttribute="leading" secondItem="Tfe-Zl-yVn" secondAttribute="leading" constant="5" id="4Ia-Vl-CJg"/>
+                            <constraint firstItem="Tfe-Zl-yVn" firstAttribute="trailing" secondItem="nQQ-Ti-HTc" secondAttribute="trailing" id="Dis-IU-Zjd"/>
+                            <constraint firstItem="XVz-DM-YME" firstAttribute="top" secondItem="nQQ-Ti-HTc" secondAttribute="bottom" constant="10" id="EUt-ul-tjF"/>
+                            <constraint firstItem="Tfe-Zl-yVn" firstAttribute="trailing" secondItem="XVz-DM-YME" secondAttribute="trailing" constant="5" id="Xgr-Ws-bmp"/>
+                            <constraint firstItem="nQQ-Ti-HTc" firstAttribute="leading" secondItem="Tfe-Zl-yVn" secondAttribute="leading" id="myO-aQ-4bU"/>
+                            <constraint firstItem="nQQ-Ti-HTc" firstAttribute="top" secondItem="Tfe-Zl-yVn" secondAttribute="top" id="tfj-TK-psR"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="magnifyingglass" catalog="system" id="4qq-4k-tYS"/>
+                    <connections>
+                        <outlet property="movieImageView" destination="nQQ-Ti-HTc" id="EMT-0O-eeJ"/>
+                        <outlet property="titleLabel" destination="XVz-DM-YME" id="Gz1-Yt-dqt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SN-Sf-cFR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -270,8 +297,11 @@
                             <outlet property="delegate" destination="mwX-LA-Vnu" id="IiN-pa-Jz8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dIu-gu-7Ca"/>
+                    <navigationItem key="navigationItem" id="dIu-gu-7Ca">
+                        <barButtonItem key="backBarButtonItem" title=" " id="G03-P4-ldS"/>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5Lm-Jz-ED9">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Refreshing Movies...">

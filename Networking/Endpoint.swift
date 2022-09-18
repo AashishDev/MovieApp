@@ -20,6 +20,7 @@ public enum EndPoint {
     case NowPlaying(pageNo:Int)
     case Popular(pageNo:Int)
     case UpComing(pageNo:Int)
+    case MovieDetail(id:Int)
     
     var rawValue:Int {
         switch self {
@@ -29,13 +30,16 @@ public enum EndPoint {
             return 1
         case .UpComing(_):
             return 2
+        case .MovieDetail(_):
+            return 3
         }
     }
     
     var requestType:String {
         switch self {
-        case .NowPlaying, .Popular, .UpComing :
+        case .NowPlaying, .Popular, .UpComing,.MovieDetail :
             return HTTPMethods.GET.rawValue
+            
         }
     }
     
@@ -47,6 +51,9 @@ public enum EndPoint {
             return BasePath + "popular?api_key=\(APIKey)&\(language)&page=\(pageNo)"
         case .UpComing(let pageNo):
             return BasePath + "upcoming?api_key=\(APIKey)&\(language)&page=\(pageNo)"
+        case .MovieDetail(id: let id):
+            return BasePath + "\(id)?api_key=\(APIKey)&\(language)"
         }
     }
 }
+
