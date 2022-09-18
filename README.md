@@ -13,7 +13,7 @@ Show listing of movies and search features (MVVM Architecture)
      <td>Details</td>
   </tr>
   <tr>
-    <td><img src="Screenshots/movieList.png" width=320 height=480></td>
-    <td><img src="Screenshots/movieDetail.png" width=320 height=480></td>
+    <td><img src="Screenshots/movieList.png"></td>
+    <td><img src="Screenshots/movieDetail.png"></td>
   </tr>
  </table>
