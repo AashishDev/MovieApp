@@ -9,11 +9,13 @@ Show listing of movies and search features (MVVM Architecture)
 
 <table>
   <tr>
-    <td>Movie Listing</td>
-     <td>Details</td>
+    <td align ="center"> Popular Movies</td>
+    <td align ="center"> Search Movies </td>
+    <td align ="center"> Details</td>
   </tr>
   <tr>
     <td><img src="Screenshots/movieList.png"></td>
+    <td><img src=" Screenshots/SearchMovies.png"></td> 
     <td><img src="Screenshots/movieDetail.png"></td>
   </tr>
  </table>
