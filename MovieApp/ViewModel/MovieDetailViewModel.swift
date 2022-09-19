@@ -20,7 +20,9 @@ class MovieDetailViewModel: ObservableObject {
     func getSelectedMovieDetails(movieId:Int) {
         Task.init {
             if let movieDetail = await getMovieDetail(movieId: movieId) {
-                completion?(movieDetail)
+                DispatchQueue.main.async { [weak self] in
+                    self?.completion?(movieDetail)
+                }
             }
         }
     }

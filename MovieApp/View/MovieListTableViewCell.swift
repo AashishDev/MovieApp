@@ -78,7 +78,7 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         if indexPath.row > movies.count-2, !isLoading {
-            print("\n------Load More --------")
+           // print("\n------Load More --------")
             loadMore?()
         }
     }
@@ -87,7 +87,7 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         collectionView.deselectItem(at: indexPath, animated: true)
         let movie = self.movies[indexPath.row]
         self.selectedItem?(movie)
-        print("Selected Index : \(movie.title)")
+        //print("Selected Index : \(movie.title)")
     }
     
 }
