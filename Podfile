@@ -7,5 +7,7 @@ target 'MovieApp' do
 
   # Pods for MovieApp
   pod 'Kingfisher', '~> 7.0'
+  pod 'SwiftLint'
+
 
 end

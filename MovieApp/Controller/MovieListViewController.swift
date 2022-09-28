@@ -8,10 +8,10 @@
 import UIKit
 import Combine
 
-enum MovieType:String,CaseIterable {
-    case NowPlaying = "Now Playing"
-    case Popular
-    case UpComing = "Up Coming"
+enum MovieType: String, CaseIterable {
+    case nowPlaying = "Now Playing"
+    case popular
+    case upComing = "Up Coming"
 }
 
 class MovieListViewController: UITableViewController {
@@ -80,7 +80,9 @@ extension MovieListViewController {
     }
     
     override  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell =  tableView.dequeueReusableCell(withIdentifier:MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else {
+        guard let cell =  tableView.dequeueReusableCell(
+            withIdentifier:MovieListTableViewCell.identifier,
+            for: indexPath) as? MovieListTableViewCell else {
             return UITableViewCell()
         }
         
@@ -90,24 +92,24 @@ extension MovieListViewController {
         cell.loadMore =  {
             
             switch type {
-            case .NowPlaying:
+            case .nowPlaying:
                 let nextPage =  MovieListViewController.nowPlayingCurrentPage + 1
                 self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
                 MovieListViewController.nowPlayingCurrentPage = nextPage
-                //print("\nNow Playing : \(self.tableDataArray[0].count)")
+                // print("\nNow Playing : \(self.tableDataArray[0].count)")
 
                 
-            case .Popular:
+            case .popular:
                 let nextPage =  MovieListViewController.popularCurrentPage + 1
                 self.vm.loadMoreForPopularList(pageNo: nextPage)
                 MovieListViewController.popularCurrentPage = nextPage
-                //print("\nPOpUlar : \(self.tableDataArray[1].count)")
+                // print("\nPOpUlar : \(self.tableDataArray[1].count)")
                 
-            case .UpComing:
+            case .upComing:
                 let nextPage =  MovieListViewController.upcomingCurrentPage + 1
                 self.vm.loadMoreForUpcomingList(pageNo: nextPage)
                 MovieListViewController.upcomingCurrentPage = nextPage
-                //print("\nUPComing : \(self.tableDataArray[2].count)")
+                // print("\nUPComing : \(self.tableDataArray[2].count)")
 
             }
         }
@@ -116,10 +118,12 @@ extension MovieListViewController {
         return cell
     }
     
-    private func moveToDetail(movie:Movie){
+    private func moveToDetail(movie: Movie) {
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyBoard.instantiateViewController(
+            withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
+        else { return }
         vc.movie = movie
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -133,14 +137,13 @@ extension MovieListViewController {
         
         if indexPath.section == 0 {
             return 270
-        }
-        else if indexPath.section == 1 {
+        } else if indexPath.section == 1 {
             return 230
         }
         return 250
     }
     
-    /*func loadMoreMovies(type:MovieType, currentPage:Int) {
+    /* func loadMoreMovies(type:MovieType, currentPage:Int) {
         let nextPage =  currentPage + 1
         
         switch type {
@@ -156,7 +159,7 @@ extension MovieListViewController {
             self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
             MovieListViewController.upcomingCurrentPage = nextPage
         }
-    }*/
+    } */
 }
 
 

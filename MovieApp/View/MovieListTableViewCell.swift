@@ -15,7 +15,7 @@ class MovieListTableViewCell: UITableViewCell {
     private var movies:[Movie] = []
     var loadMore:(() -> Void)?
     var isLoading = false
-    var selectedItem:((Movie)-> Void)?
+    var selectedItem:((Movie) -> Void)?
     
     var isPopular:Bool = false
 
@@ -44,9 +44,15 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
                                  UICollectionViewDelegate,
                                  UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NowPlayingCollectionViewCell.identifier, for: indexPath) as! NowPlayingCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: NowPlayingCollectionViewCell.identifier,
+            for: indexPath) as? NowPlayingCollectionViewCell
+        else {
+            return UICollectionViewCell()
+        }
         
         let movie = self.movies[indexPath.row]
         let title = movie.title
@@ -64,18 +70,21 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         return  self.movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if isPopular {
             return CGSize(width:250, height: collectionView.frame.size.height)
-        }
-        else {
+        } else {
             return CGSize(width:300, height: collectionView.frame.size.height)
         }
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         
         if indexPath.row > movies.count-2, !isLoading {
            // print("\n------Load More --------")
@@ -83,11 +92,12 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let movie = self.movies[indexPath.row]
         self.selectedItem?(movie)
-        //print("Selected Index : \(movie.title)")
+        // print("Selected Index : \(movie.title)")
     }
     
 }

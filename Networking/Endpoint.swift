@@ -12,51 +12,51 @@ enum HTTPMethods:String {
     case POST
 }
 
-let BasePath = "https://api.themoviedb.org/3/"
+let basePath = "https://api.themoviedb.org/3/"
 let APIKey = "11c5d3b2a72c53e38a4b740b08d28921"
 let language = "language=en-US"
 
 public enum EndPoint {
-    case NowPlaying(pageNo:Int)
-    case Popular(pageNo:Int)
-    case UpComing(pageNo:Int)
-    case MovieDetail(id:Int)
-    case Search(query:String)
+    case nowPlaying(_ pageNo:Int)
+    case popular(_ pageNo:Int)
+    case upComing(_ pageNo:Int)
+    case movieDetail(_ id:Int)
+    case search(_ query:String)
     
     var rawValue:Int {
         switch self {
-        case .NowPlaying(_):
+        case .nowPlaying:
             return 0
-        case .Popular(_):
+        case .popular:
             return 1
-        case .UpComing(_):
+        case .upComing:
             return 2
-        case .MovieDetail(_):
+        case .movieDetail:
             return 3
-        case .Search(_):
+        case .search:
             return 4
         }
     }
     
     var requestType:String {
         switch self {
-        case .NowPlaying, .Popular, .UpComing,.MovieDetail,.Search :
+        case .nowPlaying, .popular, .upComing, .movieDetail, .search :
             return HTTPMethods.GET.rawValue
         }
     }
     
     var path:String {
         switch self {
-        case .NowPlaying(let pageNo):
-            return BasePath + "movie/now_playing?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
-        case .Popular(let pageNo):
-            return BasePath + "movie/popular?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
-        case .UpComing(let pageNo):
-            return BasePath + "movie/upcoming?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
-        case .MovieDetail(id: let id):
-            return BasePath + "movie/\(id)?api_key=\(APIKey)&\(language)&include_adult=false"
-        case .Search(let query):
-            return BasePath + "search/movie?api_key=\(APIKey)&\(language)&page=1&query=\(query)&include_adult=false"
+        case .nowPlaying(let pageNo):
+            return basePath + "movie/now_playing?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
+        case .popular(let pageNo):
+            return basePath + "movie/popular?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
+        case .upComing(let pageNo):
+            return basePath + "movie/upcoming?api_key=\(APIKey)&\(language)&page=\(pageNo)&include_adult=false"
+        case .movieDetail(id: let id):
+            return basePath + "movie/\(id)?api_key=\(APIKey)&\(language)&include_adult=false"
+        case .search(let query):
+            return basePath + "search/movie?api_key=\(APIKey)&\(language)&page=1&query=\(query)&include_adult=false"
         }
     }
 }

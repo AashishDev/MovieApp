@@ -22,7 +22,7 @@ struct MovieSearchService:MovieSearchServiceProtocol {
     func searchMovieByName(query:String) async throws -> MovieResponse {
         
         return try await withCheckedThrowingContinuation { continuation in
-            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .Search(query: query)) { result in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .search(query)) { result in
                 continuation.resume(with: result)
             }
         }

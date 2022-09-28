@@ -12,9 +12,9 @@ import Networking
 struct MovieDetail:Codable {
     let id:Int
     let title:String
-    let poster_path:String
+    let poster_path: String
     let overview:String
-    //Release date  "release_date":"2022-07-06",
+    // Release date  "release_date":"2022-07-06",
     
     var postImageUrl:URL {
         let basePath = "https://image.tmdb.org/t/p/w500"
@@ -35,7 +35,7 @@ struct MovieDetailService:MovieDetailServiceProtocol {
     func getMovieDetail(movieId:Int) async throws -> MovieDetail {
         return try await withCheckedThrowingContinuation { continuation in
             
-            self.apiManager.execute(responseType: MovieDetail.self, endpoint: .MovieDetail(id: movieId)) { result in
+            self.apiManager.execute(responseType: MovieDetail.self, endpoint: .movieDetail(movieId)) { result in
                 continuation.resume(with: result)
             }
         }

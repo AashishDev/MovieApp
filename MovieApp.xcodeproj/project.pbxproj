@@ -220,6 +220,7 @@
 				AE3B57AE28CAFDBC0032BF0A /* MovieListViewModel.swift */,
 				AE5D1FBF28D72B2700BB15A7 /* MovieDetailViewModel.swift */,
 				AE21FC8B28D899B9002164AB /* MovieSearchViewModel.swift */,
+				AE43CBC628C9FA260037178D /* LaunchScreen.storyboard */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,8 +228,8 @@
 		AE43CBD128C9FA430037178D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AE3B57AA28CAF5DC0032BF0A /* MovieListTableViewCell.swift */,
 				AE3B57AC28CAF6DE0032BF0A /* NowPlayingCollectionViewCell.swift */,
+				AE3B57AA28CAF5DC0032BF0A /* MovieListTableViewCell.swift */,
 				AE2420A028CB47BD001520F5 /* SearchTableViewCell.swift */,
 			);
 			path = View;
@@ -258,7 +259,6 @@
 		AE43CBDC28C9FB090037178D /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				AE43CBC628C9FA260037178D /* LaunchScreen.storyboard */,
 				AE43CBC128C9FA200037178D /* Main.storyboard */,
 			);
 			path = StoryBoard;
@@ -329,6 +329,7 @@
 			buildConfigurationList = AE43CBCC28C9FA260037178D /* Build configuration list for PBXNativeTarget "MovieApp" */;
 			buildPhases = (
 				3570A13EF3051DCAC67E53FC /* [CP] Check Pods Manifest.lock */,
+				AE31572528E4713C0035B667 /* Run Script */,
 				AE43CBB428C9FA200037178D /* Sources */,
 				AE43CBB528C9FA200037178D /* Frameworks */,
 				AE43CBB628C9FA200037178D /* Resources */,
@@ -453,6 +454,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AE31572528E4713C0035B667 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

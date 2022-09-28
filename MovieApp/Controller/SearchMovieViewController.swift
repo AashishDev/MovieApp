@@ -39,7 +39,9 @@ extension SearchMovieViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell =  tableView.dequeueReusableCell(withIdentifier:SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else {
+        guard let cell =  tableView.dequeueReusableCell(
+            withIdentifier:SearchTableViewCell.identifier,
+            for: indexPath) as? SearchTableViewCell else {
             return UITableViewCell()
         }
         
@@ -59,9 +61,10 @@ extension SearchMovieViewController:UITableViewDataSource,UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
-    private func moveToDetail(movie:Movie){
+    private func moveToDetail(movie:Movie) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        guard let vc = storyBoard.instantiateViewController(
+            withIdentifier: "MovieDetailViewController") as?  MovieDetailViewController else { return }
         vc.movie = movie
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
@@ -77,7 +80,7 @@ extension SearchMovieViewController:UISearchResultsUpdating {
             .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .sink { value in
                 if let _value = value {
-                    var searchText = _value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    let searchText = _value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     self.vm.searchMovieByName(name: searchText ?? "")
                 }
             }

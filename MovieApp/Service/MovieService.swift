@@ -41,7 +41,7 @@ struct NowPlayingMovieService:MovieServiceProtocol {
     
     func loadMovies(pageNo:Int) async throws -> MovieResponse {
         return try await withCheckedThrowingContinuation { continuation in
-            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .NowPlaying(pageNo: pageNo)) { result in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .nowPlaying(pageNo)) { result in
                 continuation.resume(with: result)
             }
         }
@@ -56,7 +56,7 @@ struct PopularMovieService:MovieServiceProtocol {
     
     func loadMovies(pageNo:Int) async throws -> MovieResponse {
         return try await withCheckedThrowingContinuation { continuation in
-            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .Popular(pageNo: pageNo)) { result in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .popular(pageNo)) { result in
                 continuation.resume(with: result)
             }
         }
@@ -71,7 +71,7 @@ struct UpComingMovieService:MovieServiceProtocol {
     
     func loadMovies(pageNo:Int) async throws -> MovieResponse {
         return try await withCheckedThrowingContinuation { continuation in
-            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .UpComing(pageNo: pageNo)) { result in
+            self.apiManager.execute(responseType: MovieResponse.self, endpoint: .upComing(pageNo)) { result in
                 continuation.resume(with: result)
             }
         }

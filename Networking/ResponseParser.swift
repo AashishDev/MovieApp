@@ -18,7 +18,8 @@ public struct ResponseParser:ResponseParserProtocol {
         self.jsonDecoder = jsonDecoder
     }
     
-    public func parse<T>(type: T.Type, data: Data, completion: (Result<T, Error>) -> Void) where T : Decodable, T : Encodable {
+    public func parse<T>(type: T.Type, data: Data,
+                         completion: (Result<T, Error>) -> Void) where T : Decodable, T : Encodable {
         
         do {
             let model = try self.jsonDecoder.decode(T.self, from:data)
