@@ -16,6 +16,8 @@ class SearchMovieViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     private var cancellable: AnyCancellable?
 
+    var didSelectItem:((Movie) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Search"
@@ -33,7 +35,7 @@ class SearchMovieViewController: UIViewController {
     }
 }
 
-extension SearchMovieViewController:UITableViewDataSource,UITableViewDelegate {
+extension SearchMovieViewController:UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredMovies.count
     }
@@ -50,26 +52,14 @@ extension SearchMovieViewController:UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = self.filteredMovies[indexPath.row]
-        moveToDetail(movie: movie)
+        didSelectItem?(movie)
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    private func moveToDetail(movie:Movie) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        guard let vc = storyBoard.instantiateViewController(
-            withIdentifier: "MovieDetailViewController") as?  MovieDetailViewController else { return }
-        vc.movie = movie
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
 }
 
 
@@ -84,6 +74,5 @@ extension SearchMovieViewController:UISearchResultsUpdating {
                     self.vm.searchMovieByName(name: searchText ?? "")
                 }
             }
-       // guard let text = searchBar.text else { return }
     }
 }

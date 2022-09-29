@@ -17,8 +17,7 @@ class MovieListViewModel: ObservableObject {
     
     init(nowPlaying:MovieServiceProtocol =  NowPlayingMovieService(),
          popular:MovieServiceProtocol =  PopularMovieService(),
-         upComing:MovieServiceProtocol =  UpComingMovieService())
-    {
+         upComing:MovieServiceProtocol =  UpComingMovieService()) {
         self.nowPlayingService =  nowPlaying
         self.popularService =  popular
         self.upcomingService =  upComing
@@ -34,7 +33,7 @@ class MovieListViewModel: ObservableObject {
     }
 }
 
-//Public Methods ----------------------------------------
+// Public Methods ----------------------------------------
 extension MovieListViewModel {
     
     func loadMoreForNowPlayingList(pageNo:Int) {
@@ -65,31 +64,30 @@ extension MovieListViewModel {
 
 extension MovieListViewModel {
     
-    func loadAllMovies() async  -> [[Movie]]  {
+    func loadAllMovies() async  -> [[Movie]] {
         async let nowPlayingMovies = nowPlaying()
         async let popularMovies =  popular()
         async let upComingMovies =  upcoming()
-        return await [nowPlayingMovies,popularMovies,upComingMovies]
+        return await [nowPlayingMovies, popularMovies, upComingMovies]
     }
     
     private func nowPlaying(pageNo:Int = 1) async -> [Movie] {
         await getMovies(service: nowPlayingService, pageNo: pageNo)
     }
     
-    private func popular(pageNo:Int = 1) async -> [Movie]  {
+    private func popular(pageNo:Int = 1) async -> [Movie] {
         await getMovies(service: popularService, pageNo: pageNo)
     }
     
-    private func upcoming(pageNo:Int = 1) async -> [Movie]  {
+    private func upcoming(pageNo:Int = 1) async -> [Movie] {
         await getMovies(service: upcomingService, pageNo: pageNo)
     }
     
-    private func getMovies(service:MovieServiceProtocol,pageNo:Int) async -> [Movie]{
+    private func getMovies(service:MovieServiceProtocol, pageNo:Int) async -> [Movie] {
         do {
             let response = try await self.upcomingService.loadMovies(pageNo: pageNo)
             return response.movies
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
         }
         return []

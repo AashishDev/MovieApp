@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol RemoteServiceProtocol {
-    func execute(request:URLRequest,completion: @escaping ((Result<Data,Error>) -> Void))
+    func execute(request:URLRequest, completion: @escaping ((Result<Data, Error>) -> Void))
 }
 
 public struct RemoteService:RemoteServiceProtocol {

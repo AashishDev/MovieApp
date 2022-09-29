@@ -12,8 +12,7 @@ class MovieDetailViewModel: ObservableObject {
    private let service:MovieDetailServiceProtocol
     var completion:((MovieDetail) -> Void)?
     
-    init(service:MovieDetailServiceProtocol =  MovieDetailService())
-    {
+    init(service:MovieDetailServiceProtocol =  MovieDetailService()) {
         self.service =  service
     }
     
@@ -31,8 +30,7 @@ class MovieDetailViewModel: ObservableObject {
         do {
             let response = try await self.service.getMovieDetail(movieId: movieId)
             return response
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
         }
         return nil

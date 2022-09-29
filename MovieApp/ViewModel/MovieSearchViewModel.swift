@@ -12,8 +12,7 @@ class MovieSearchViewModel: ObservableObject {
     private let service:MovieSearchServiceProtocol
     var completion:(([Movie]) -> Void)?
     
-    init(service:MovieSearchServiceProtocol =  MovieSearchService())
-    {
+    init(service:MovieSearchServiceProtocol =  MovieSearchService()) {
         self.service =  service
     }
     
@@ -31,8 +30,7 @@ class MovieSearchViewModel: ObservableObject {
         do {
             let response = try await self.service.searchMovieByName(query: query)
             return response
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
         }
         return nil

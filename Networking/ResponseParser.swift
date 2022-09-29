@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ResponseParserProtocol {
-    func parse<T:Codable>(type:T.Type,data:Data,completion:(Result<T,Error>) -> Void)
+    func parse<T:Codable>(type:T.Type, data:Data, completion:(Result<T, Error>) -> Void)
 }
 
 public struct ResponseParser:ResponseParserProtocol {
@@ -24,8 +24,7 @@ public struct ResponseParser:ResponseParserProtocol {
         do {
             let model = try self.jsonDecoder.decode(T.self, from:data)
             completion(.success(model))
-        }
-        catch {
+        } catch {
             completion(.failure(error))
         }
     }

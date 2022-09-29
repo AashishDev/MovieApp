@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6W2-MA-IKe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6W2-MA-IKe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MlI-cc-Hop">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" rowHeight="213" id="F07-N9-vYK" customClass="SearchTableViewCell" customModule="MovieApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="213"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="213"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F07-N9-vYK" id="eRg-el-qkV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="213"/>
@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8y-X5-cKG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224.6376811594205" y="768.75"/>
+            <point key="canvasLocation" x="1268" y="51"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZXz-CY-LaM">
@@ -102,10 +102,6 @@
                         <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="Uqb-Zh-0Cn" kind="relationship" relationship="viewControllers" id="eOd-KG-jYg"/>
-                        <segue destination="o5w-8J-1k3" kind="relationship" relationship="viewControllers" id="EoK-Qv-Esw"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujd-cM-OS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,13 +116,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nQQ-Ti-HTc">
-                                <rect key="frame" x="0.0" y="44" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="414"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nQQ-Ti-HTc" secondAttribute="height" id="R91-p2-bub"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVz-DM-YME">
-                                <rect key="frame" x="5" y="468" width="404" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVz-DM-YME">
+                                <rect key="frame" x="5" y="472" width="404" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -151,59 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SN-Sf-cFR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-494" y="1463"/>
-        </scene>
-        <!--Movie-->
-        <scene sceneID="x7T-xP-MPS">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uqb-Zh-0Cn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movie" image="house.fill" catalog="system" id="OND-aw-DvK"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lgv-yl-Jhc">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mwX-LA-Vnu" kind="relationship" relationship="rootViewController" id="pfp-jq-fId"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZZ-1I-IbY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-668.11594202898561" y="768.75"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="0YF-bV-KFW">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o5w-8J-1k3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="FIf-Ry-AUy"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8qT-Ud-VvD">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="OXL-1w-YzD" kind="relationship" relationship="rootViewController" id="srk-9H-nKe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TCY-Tr-zjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1314.4927536231885" y="768.75"/>
+            <point key="canvasLocation" x="2159" y="50"/>
         </scene>
         <!--Movie List View Controller-->
         <scene sceneID="o9e-CC-xu1">
@@ -215,7 +159,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieListTableViewCell" rowHeight="135" id="3lE-SP-RII" customClass="MovieListTableViewCell" customModule="MovieApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="135"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3lE-SP-RII" id="dvd-iS-KaO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
@@ -316,12 +260,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8l-3z-58f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="769"/>
+            <point key="canvasLocation" x="532" y="51"/>
         </scene>
     </scenes>
     <resources>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -22,6 +22,8 @@ class MovieListViewController: UITableViewController {
     static var popularCurrentPage = 0
     static var upcomingCurrentPage = 0
     
+    var didSelectItem:((Movie) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Movie List"
@@ -87,48 +89,33 @@ extension MovieListViewController {
         }
         
         let selMovies =  tableDataArray[indexPath.section]
-        cell.configure(with: selMovies,indexPath: indexPath)
+        cell.configure(with: selMovies, indexPath: indexPath)
         let type = MovieType.allCases[indexPath.section]
-        cell.loadMore =  {
+        cell.loadMore = {
             
             switch type {
             case .nowPlaying:
                 let nextPage =  MovieListViewController.nowPlayingCurrentPage + 1
                 self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
                 MovieListViewController.nowPlayingCurrentPage = nextPage
-                // print("\nNow Playing : \(self.tableDataArray[0].count)")
-
                 
             case .popular:
                 let nextPage =  MovieListViewController.popularCurrentPage + 1
                 self.vm.loadMoreForPopularList(pageNo: nextPage)
                 MovieListViewController.popularCurrentPage = nextPage
-                // print("\nPOpUlar : \(self.tableDataArray[1].count)")
                 
             case .upComing:
                 let nextPage =  MovieListViewController.upcomingCurrentPage + 1
                 self.vm.loadMoreForUpcomingList(pageNo: nextPage)
                 MovieListViewController.upcomingCurrentPage = nextPage
-                // print("\nUPComing : \(self.tableDataArray[2].count)")
-
             }
         }
-        cell.selectedItem = moveToDetail
+        cell.selectedItem = didSelectItem
         cell.backgroundColor = .white
         return cell
     }
     
-    private func moveToDetail(movie: Movie) {
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyBoard.instantiateViewController(
-            withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
-        else { return }
-        vc.movie = movie
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
+ 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -142,24 +129,6 @@ extension MovieListViewController {
         }
         return 250
     }
-    
-    /* func loadMoreMovies(type:MovieType, currentPage:Int) {
-        let nextPage =  currentPage + 1
-        
-        switch type {
-        case .NowPlaying:
-            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
-            MovieListViewController.nowPlayingCurrentPage = nextPage
-            
-        case .Popular:
-            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
-            MovieListViewController.popularCurrentPage = nextPage
-
-        case .UpComing:
-            self.vm.loadMoreForNowPlayingList(pageNo: nextPage)
-            MovieListViewController.upcomingCurrentPage = nextPage
-        }
-    } */
 }
 
 
