@@ -71,11 +71,11 @@ extension SearchMovieViewController:UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         cancellable = searchController.searchBar.publisher(for: \.text)
             .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
-            .sink { [weak self] value in
+            .sink { value in
                 if let _value = value {
                     let searchText = _value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                    self?.view.showLoading()
-                    self?.vm.searchMovieByName(name: searchText ?? "")
+                    self.view.showLoading()
+                    self.vm.searchMovieByName(name: searchText ?? "")
                 }
             }
     }
