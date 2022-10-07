@@ -26,7 +26,7 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     func configure(with movie:Movie) {
-        iconImageView.kf.setImage(with: movie.postImageUrl)
+        iconImageView.loadImage(with: movie.postImageUrl)
         title.text = movie.title
         
         let backgroundView = UIView()

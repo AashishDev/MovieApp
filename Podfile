@@ -6,7 +6,7 @@ target 'MovieApp' do
   use_frameworks!
 
   # Pods for MovieApp
-  pod 'Kingfisher', '~> 7.0'
+  #pod 'Kingfisher', '~> 7.0'
   pod 'SwiftLint'
 
 

@@ -38,6 +38,7 @@
 		AE5D1FC028D72B2700BB15A7 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D1FBF28D72B2700BB15A7 /* MovieDetailViewModel.swift */; };
 		AE5D1FC228D72B4000BB15A7 /* MovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D1FC128D72B4000BB15A7 /* MovieDetailService.swift */; };
 		AEB894B428F05CC600AB8EE2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB894B328F05CC600AB8EE2 /* Loader.swift */; };
+		AEB894B628F060D100AB8EE2 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB894B528F060D100AB8EE2 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		AE5D1FBF28D72B2700BB15A7 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		AE5D1FC128D72B4000BB15A7 /* MovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailService.swift; sourceTree = "<group>"; };
 		AEB894B328F05CC600AB8EE2 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		AEB894B528F060D100AB8EE2 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		AEF5C55628CC14C300D00985 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		BBA14C34966E08A69BD0641A /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				AEB894B328F05CC600AB8EE2 /* Loader.swift */,
+				AEB894B528F060D100AB8EE2 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -347,7 +350,6 @@
 				AE43CBB428C9FA200037178D /* Sources */,
 				AE43CBB528C9FA200037178D /* Frameworks */,
 				AE43CBB628C9FA200037178D /* Resources */,
-				964B23822C920F71DFF9ED08 /* [CP] Embed Pods Frameworks */,
 				AE4125AA28D6138600AD657D /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -452,23 +454,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		964B23822C920F71DFF9ED08 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AE31572528E4713C0035B667 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -523,6 +508,7 @@
 				AE3B57AF28CAFDBC0032BF0A /* MovieListViewModel.swift in Sources */,
 				AE21FC8C28D899B9002164AB /* MovieSearchViewModel.swift in Sources */,
 				AEB894B428F05CC600AB8EE2 /* Loader.swift in Sources */,
+				AEB894B628F060D100AB8EE2 /* ImageLoader.swift in Sources */,
 				AE5D1FC028D72B2700BB15A7 /* MovieDetailViewModel.swift in Sources */,
 				AE1B59BF28E512AB00CA45AA /* AppFlow.swift in Sources */,
 				AE0EFC2E28CC81DA00C33FC4 /* NowPlayingDataSource.swift in Sources */,

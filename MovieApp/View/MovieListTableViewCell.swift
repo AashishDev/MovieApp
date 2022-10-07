@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
-
 
 class MovieListTableViewCell: UITableViewCell {
     static let identifier = "MovieListTableViewCell"
@@ -60,7 +58,7 @@ extension MovieListTableViewCell:UICollectionViewDataSource,
         
         cell.imageView.layer.cornerRadius = 8.0
         cell.imageView.backgroundColor = UIColor.lightGray
-        cell.imageView.kf.setImage(with: movie.postImageUrl)
+        cell.imageView.loadImage(with: movie.postImageUrl)
         cell.imageView.layer.borderColor = UIColor.lightGray.cgColor
         cell.imageView.layer.borderWidth = 0.5
         return cell

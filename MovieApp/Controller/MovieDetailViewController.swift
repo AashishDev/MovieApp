@@ -4,9 +4,7 @@
 //
 //  Created by Aashish Tyagi on 9/8/22.
 //
-
 import UIKit
-import Kingfisher
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieImageView: UIImageView!
@@ -24,11 +22,10 @@ class MovieDetailViewController: UIViewController {
     fileprivate func fetchMovieDetails() {
         vm.completion = { movieDetail in
             DispatchQueue.main.async { [weak self] in
-                self?.movieImageView.kf.setImage(with: movieDetail.postImageUrl)
+                self?.movieImageView.loadImage(with: movieDetail.postImageUrl)
                 self?.titleLabel.text = movieDetail.overview
             }
         }
         vm.getSelectedMovieDetails(movieId: movie!.id)
     }
-    
 }
