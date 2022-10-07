@@ -28,10 +28,13 @@ class SearchMovieViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        vm.completion = { movies in
-            self.filteredMovies =  movies
-            self.tableView.reloadData()
+        vm.completion = { [weak self] movies in
+            self?.view.stopLoading()
+            self?.filteredMovies =  movies
+            self?.tableView.reloadData()
         }
+        
+
     }
 }
 
@@ -68,10 +71,11 @@ extension SearchMovieViewController:UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         cancellable = searchController.searchBar.publisher(for: \.text)
             .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
-            .sink { value in
+            .sink { [weak self] value in
                 if let _value = value {
                     let searchText = _value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                    self.vm.searchMovieByName(name: searchText ?? "")
+                    self?.view.showLoading()
+                    self?.vm.searchMovieByName(name: searchText ?? "")
                 }
             }
     }

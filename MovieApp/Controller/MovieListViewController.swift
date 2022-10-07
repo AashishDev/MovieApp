@@ -30,15 +30,18 @@ class MovieListViewController: UITableViewController {
         tableView.register(UITableViewCell.self
                            , forCellReuseIdentifier: "Cell")
         tableView.backgroundColor = .black
+        
         reloadTableForNewMovies()
+        view.showLoading()
         vm.refreshAllMovieListing()
     }
     
     private func reloadTableForNewMovies() {
         cancellable = vm.$moviesList.sink { [weak self] movies in
             self?.tableDataArray = movies
-            
+
             DispatchQueue.main.async {
+                self?.view.stopLoading()
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
             }
@@ -46,6 +49,7 @@ class MovieListViewController: UITableViewController {
     }
     
     @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
+        view.showLoading()
         vm.refreshAllMovieListing()
     }
 }
