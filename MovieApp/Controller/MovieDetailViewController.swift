@@ -6,7 +6,9 @@
 //
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController,Storyboardable {
+    static var storyboardName: StoryBoard = .MovieDetail
+
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     private let vm = MovieDetailViewModel()

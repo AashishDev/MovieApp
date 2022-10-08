@@ -8,7 +8,8 @@
 import UIKit
 import Combine
 
-class SearchMovieViewController: UIViewController {
+class SearchMovieViewController: UIViewController,Storyboardable {
+    static var storyboardName: StoryBoard = .Search
     
     private let vm = MovieSearchViewModel()
     private var filteredMovies:[Movie] = []

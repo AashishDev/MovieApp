@@ -14,7 +14,9 @@ enum MovieType: String, CaseIterable {
     case upComing = "Up Coming"
 }
 
-class MovieListViewController: UITableViewController {
+class MovieListViewController: UITableViewController,Storyboardable {
+    static var storyboardName: StoryBoard = .Movie
+    
     private let vm = MovieListViewModel()
     private var cancellable: AnyCancellable?
     private var tableDataArray:[[Movie]] = []

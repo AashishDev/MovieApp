@@ -11,7 +11,7 @@ enum StoryBoard:String {
     case Main
     case Movie
     case Search
-    case Detail
+    case MovieDetail
 }
 
 
@@ -24,7 +24,7 @@ protocol Storyboardable {
 }
 
 extension Storyboardable where Self: UIViewController {
-    static var storyBoardName:StoryBoard {
+    static var storyboardName:StoryBoard {
         return .Main
     }
     
@@ -38,7 +38,7 @@ extension Storyboardable where Self: UIViewController {
     
     static func instantiate() -> Self {
         
-        guard let viewController = UIStoryboard(name: storyBoardName.rawValue,
+        guard let viewController = UIStoryboard(name: storyboardName.rawValue,
                                                 bundle: storyboardBundle)
                                 .instantiateViewController(
                                                 withIdentifier: storyboardIdentifier) as? Self else {

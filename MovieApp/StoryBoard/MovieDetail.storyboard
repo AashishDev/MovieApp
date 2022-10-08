@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie Detail-->
+        <scene sceneID="5ya-t0-dxs">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailViewController" title="Movie Detail" id="s9f-g8-F1x" customClass="MovieDetailViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1uL-r1-HKg">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tMC-Fd-lOs">
+                                <rect key="frame" x="0.0" y="47" width="390" height="390"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tMC-Fd-lOs" secondAttribute="height" id="Hk7-Qb-vDn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pio-20-Bhu">
+                                <rect key="frame" x="5" y="447" width="380" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N3Y-9P-H5Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N3Y-9P-H5Y" firstAttribute="trailing" secondItem="tMC-Fd-lOs" secondAttribute="trailing" id="DeD-vx-4tB"/>
+                            <constraint firstItem="N3Y-9P-H5Y" firstAttribute="trailing" secondItem="Pio-20-Bhu" secondAttribute="trailing" constant="5" id="J7H-iT-fJr"/>
+                            <constraint firstItem="Pio-20-Bhu" firstAttribute="leading" secondItem="N3Y-9P-H5Y" secondAttribute="leading" constant="5" id="JgW-s8-0Kc"/>
+                            <constraint firstItem="tMC-Fd-lOs" firstAttribute="top" secondItem="N3Y-9P-H5Y" secondAttribute="top" id="SiU-QG-fag"/>
+                            <constraint firstItem="tMC-Fd-lOs" firstAttribute="leading" secondItem="N3Y-9P-H5Y" secondAttribute="leading" id="UTQ-43-8pF"/>
+                            <constraint firstItem="N3Y-9P-H5Y" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Pio-20-Bhu" secondAttribute="bottom" constant="10" id="ZaB-S8-wot"/>
+                            <constraint firstItem="Pio-20-Bhu" firstAttribute="top" secondItem="tMC-Fd-lOs" secondAttribute="bottom" constant="10" id="eNd-e2-iTL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="magnifyingglass" catalog="system" id="qb7-9z-Icu"/>
+                    <connections>
+                        <outlet property="movieImageView" destination="tMC-Fd-lOs" id="lb0-aB-DAV"/>
+                        <outlet property="titleLabel" destination="Pio-20-Bhu" id="Srd-gY-CBy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTE-VB-dyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2159" y="50"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

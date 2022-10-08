@@ -19,11 +19,7 @@ class AppFlow:Flow {
     }
     
      func start() {
-         
-         let storyBoard = UIStoryboard(name: "Main", bundle: .main)
-         if let tabBarController = storyBoard.instantiateViewController(
-            withIdentifier: "TabBarController") as? TabBarController {
-             self.navigation?.viewControllers = [tabBarController]
-         }
+        let tabBarController = TabBarController.instantiate()
+        self.navigation?.viewControllers = [tabBarController]
     }
 }
