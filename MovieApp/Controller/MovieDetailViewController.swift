@@ -19,6 +19,13 @@ class MovieDetailViewController: UIViewController,Storyboardable {
         self.title = movie!.title
         self.navigationItem.largeTitleDisplayMode = .never
         fetchMovieDetails()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showFullScreenImage))
+        movieImageView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showFullScreenImage() {
+        movieImageView.showFullScreenImage(from: self)
     }
     
     fileprivate func fetchMovieDetails() {
@@ -30,4 +37,7 @@ class MovieDetailViewController: UIViewController,Storyboardable {
         }
         vm.getSelectedMovieDetails(movieId: movie!.id)
     }
+    
+   
+    
 }
