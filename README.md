@@ -4,6 +4,10 @@ Show listing of movies and search features (MVVM Architecture)
 1. Async Await API 
 2. Combine 
 3. Protocol oriented programming 
+4. Muliple Storyboard using protocol
+5. Custom Cache for Image loading feature,
+6. Custom loading indicator.
+7. TabBarController 
 
 #### Movies App Screenshots
 
