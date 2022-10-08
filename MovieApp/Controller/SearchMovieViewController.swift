@@ -20,7 +20,6 @@ class SearchMovieViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Search"
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -33,9 +32,13 @@ class SearchMovieViewController: UIViewController {
             self?.filteredMovies =  movies
             self?.tableView.reloadData()
         }
-        
-
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar(largeTitleColor: .white, backgoundColor: .black, tintColor: .white, title: "Search", preferredLargeTitle: true)
+    }
+    
 }
 
 extension SearchMovieViewController:UITableViewDataSource, UITableViewDelegate {

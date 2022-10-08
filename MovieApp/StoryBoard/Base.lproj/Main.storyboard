@@ -133,6 +133,7 @@
                         <constraints>
                             <constraint firstItem="XVz-DM-YME" firstAttribute="leading" secondItem="Tfe-Zl-yVn" secondAttribute="leading" constant="5" id="4Ia-Vl-CJg"/>
                             <constraint firstItem="Tfe-Zl-yVn" firstAttribute="trailing" secondItem="nQQ-Ti-HTc" secondAttribute="trailing" id="Dis-IU-Zjd"/>
+                            <constraint firstItem="Tfe-Zl-yVn" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XVz-DM-YME" secondAttribute="bottom" constant="10" id="E7E-cM-Saq"/>
                             <constraint firstItem="XVz-DM-YME" firstAttribute="top" secondItem="nQQ-Ti-HTc" secondAttribute="bottom" constant="10" id="EUt-ul-tjF"/>
                             <constraint firstItem="Tfe-Zl-yVn" firstAttribute="trailing" secondItem="XVz-DM-YME" secondAttribute="trailing" constant="5" id="Xgr-Ws-bmp"/>
                             <constraint firstItem="nQQ-Ti-HTc" firstAttribute="leading" secondItem="Tfe-Zl-yVn" secondAttribute="leading" id="myO-aQ-4bU"/>

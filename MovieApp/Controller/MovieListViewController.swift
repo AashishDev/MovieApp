@@ -26,7 +26,7 @@ class MovieListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Movie List"
+        
         tableView.register(UITableViewCell.self
                            , forCellReuseIdentifier: "Cell")
         tableView.backgroundColor = .black
@@ -34,6 +34,11 @@ class MovieListViewController: UITableViewController {
         reloadTableForNewMovies()
         view.showLoading()
         vm.refreshAllMovieListing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar(largeTitleColor: .white, backgoundColor: .black, tintColor: .white, title: "Movies", preferredLargeTitle: true)
     }
     
     private func reloadTableForNewMovies() {

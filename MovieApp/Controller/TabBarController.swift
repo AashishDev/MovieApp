@@ -20,41 +20,28 @@ class TabBarController: UITabBarController {
     }
     
     private func setUp() {
-        var childControllers:[UINavigationController] = []
-        let storyBoard = UIStoryboard(name: "Main", bundle: .main)
+       let storyBoard = UIStoryboard(name: "Main", bundle: .main)
         
-        // 1 Home
-        if let movieListVC = storyBoard.instantiateViewController(
-            withIdentifier: "MovieListViewController") as? MovieListViewController {
-            let navigation =  UINavigationController(rootViewController: movieListVC)
-            navigation.tabBarItem.title = "Home"
-            navigation.tabBarItem.image = UIImage(systemName: "house.fill")
-            childControllers.append(navigation)
-            
-            movieListVC.didSelectItem = { [weak self] movie in
-                self?.moveToDetailScreen(movie: movie, from: movieListVC)
-            }
+        //Home
+        guard let movieListVC = storyBoard.instantiateViewController(
+            withIdentifier: "MovieListViewController") as? MovieListViewController else { return }
+        movieListVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+        movieListVC.didSelectItem = { [weak self] movie in
+            self?.moveToDetailScreen(movie: movie, from: movieListVC)
         }
         
-        // 2 Search
-        if let searchVC = storyBoard.instantiateViewController(
-            withIdentifier: "SearchMovieViewController") as? SearchMovieViewController {
-            
-            let navigation =  UINavigationController(rootViewController: searchVC)
-            navigation.navigationItem.largeTitleDisplayMode = .always
-            navigation.navigationBar.largeContentTitle = "Search"
-            navigation.tabBarItem.title = "Search"
-            navigation.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-            childControllers.append(navigation)
-            
-            searchVC.didSelectItem = { [weak self] movie in
-                self?.moveToDetailScreen(movie: movie, from: searchVC)
-            }
+        //Search
+        guard let searchVC = storyBoard.instantiateViewController(
+            withIdentifier: "SearchMovieViewController") as? SearchMovieViewController else { return }
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchVC.didSelectItem = { [weak self] movie in
+            self?.moveToDetailScreen(movie: movie, from: searchVC)
         }
         
-        viewControllers =  childControllers
+        let childControllers = [movieListVC,searchVC]
+        viewControllers =  childControllers.map({ UINavigationController.init(rootViewController: $0) })
     }
-    
+   
     // 3 Detail Screen
     private func moveToDetailScreen(movie:Movie, from viewController:UIViewController) {
         

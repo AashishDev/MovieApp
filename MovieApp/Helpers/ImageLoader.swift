@@ -32,6 +32,8 @@ final class ImageLoader {
 
 extension UIImageView {
     func loadImage(with url:URL) {
+        
+        self.image = UIImage(named: "placeholder.png")
         _ = ImageLoader().loadImage(from:url).sink { image in
             self.image = image
         }
